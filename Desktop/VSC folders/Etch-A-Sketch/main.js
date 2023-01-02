@@ -1,7 +1,7 @@
 const btn_reset = document.querySelector(".reset");
 const btn_black = document.querySelector(".black_pen");
 const btn_wheel = document.querySelector(".color_wheel");
-const btn_erase = document.querySelector(".black_pen");
+const btn_erase = document.querySelector(".Erase_tool");
 const input_color = document.getElementById("colorPicker")
 //const board = document.querySelector
 
@@ -20,14 +20,15 @@ function buildGrid(x, y, cellSize, gridElement) {
     
     btn_black.addEventListener('click', (event) => {
       console.log(event.button)
+      const state = document.getElementById("mode");
+              state.textContent = 'Black pen';
     
           if (event.button === 0){ // activates draw event only when left button is clicked
+            
             square.addEventListener('mousemove', function() {
-
-              square.style.backgroundColor = 'black';
+              const state = document.getElementById("mode");
               
-                
-             
+              
             });
 
           } 
@@ -47,12 +48,26 @@ function buildGrid(x, y, cellSize, gridElement) {
 
 
     input_color.addEventListener('input', () => { //? change color by choice
+      const state = document.getElementById("mode");
+      state.textContent = 'Color choice';
       
       square.addEventListener('mousemove', function(){ //? move event with color speificed
         square.style.backgroundColor = input_color.value;
+        
 
       });
       
+    });
+
+    btn_erase.addEventListener('click', () => {
+      const state = document.getElementById("mode");
+      state.textContent = 'Eraser';
+
+      square.addEventListener('mousemove' ,function() {
+        square.style.backgroundColor = 'white';
+        
+      });
+
     });
 
   }
